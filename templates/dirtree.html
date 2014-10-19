@@ -1,0 +1,12 @@
+<!doctype html>
+<title>Path: {{ tree.name }}</title>
+<h1>{{ tree.name }}</h1>
+<ul>
+{%- for item in tree.children %}
+    {%- if item.newPath == '' %}
+        <li><a href="/dir/{{ item.name }}">{{ item.name }}</a></li>
+    {%- else %}
+        <li><a href="/dir/{{ item.newPath }}{{ item.myKey }}{{ item.name }}">{{ item.name }}</a></li>
+    {%- endif %}
+{%- endfor %}
+</ul>
