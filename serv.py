@@ -1,6 +1,7 @@
 import os
 import sys
 from flask import Flask, render_template
+from flask import send_file
 
 def make_tree(path):
     tree = dict(name=os.path.basename(path), children=[])
@@ -71,7 +72,7 @@ def vid_name(vid_name):
     vid_name = '/'.join(vid_name.split('gotunandan'))
     ret_val = "{0}/{1}".format(my_path, vid_name)
     print("retval is --- {0}".format(ret_val))
-    return ret_val
+    return send_file(ret_val)
 
 
 if __name__ == "__main__":
