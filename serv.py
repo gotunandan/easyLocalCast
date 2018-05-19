@@ -1,5 +1,6 @@
 import os
 import sys
+from operator import itemgetter
 from flask import Flask, render_template
 
 def make_tree(path):
@@ -27,6 +28,7 @@ def make_tree(path):
                     myKey=my_key,
                     )
             )
+    tree['children'] = sorted(tree['children'], key=itemgetter('name'))
     return tree
 
 def processFile(fileName):
