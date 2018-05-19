@@ -20,17 +20,22 @@ def make_tree(path):
             newPath = '/'.join([x for x in temp_path if x not in my_set])
             #print("new path is --- {0}".format(newPath))
             modPath = 'gotunandan'.join(newPath.split('/'))
-            tree['children'].append(dict(
-                name=u'{0}'.format(name), 
-                newPath=modPath,
-                myKey=my_key,
-            ))
+            tree['children'].append(
+                dict(
+                    name=u'{0}'.format(name), 
+                    newPath=modPath,
+                    myKey=my_key,
+                    )
+            )
     return tree
 
 def processFile(fileName):
-    minus4 = fileName[-5:] if fileName.endswith('.webm') else  fileName[-4:]
+    if fileName.endswith('.webm') or fileName.endswith('.webp') or fileName.endswith('.jpeg'):
+        minus4 = fileName[-5:]
+    else:
+        minus4 = fileName[-4:]
     print("minus 4 is {0}".format(minus4))
-    if minus4 in ['.wmv', '.mp4', '.avi', '.mov', '.mkv', '.webm', ]:
+    if minus4.lower() in ['.wmv', '.m4v', '.mp4', '.avi', '.mov', '.mkv', '.flv', '.webm',]:
         print("video file is --- {0}".format(fileName))
         return render_template(
                 'play.html',
@@ -40,16 +45,19 @@ def processFile(fileName):
                 my_host=my_host,
                 my_port=my_port,
         )
+    elif minus4.lower() in ['.png', '.jpg', '.jpeg', '.gif', '.webp', '.bmp']:
+        print("image file is --- {0}".format(fileName))
+        return render_template(
+                'image.html',
+                fileName=fileName,
+                my_host=my_host,
+                my_port=my_port,
+        )
     else:
         print("directory name is --- {0}".format(fileName))
         return render_template('dirtree.html', tree=make_tree(my_path + '/' + fileName))
 
 
-
-
-#path = os.path.expanduser(u'~')
-#path = ("/media/drive2/AAA-Movies/ZZ-A-Team/")
-#my_path = (u'/media/drive2/AAA-Movies')
 my_path = u'{0}'.format(sys.argv[1])
 my_host = sys.argv[2]
 my_port = int(sys.argv[3])
