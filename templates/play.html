@@ -6,7 +6,7 @@
 <body>
 <h1> play this </h1>
 
-<video src="http://{{ my_host }}:{{ my_port }}/{{ fileName }}"  controls>play video</video>
+<video src="http://{{ my_host }}:8080/{{ fileName.decode("utf-8") }}"  controls>play video</video>
 
 </body>
 </html>
