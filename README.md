@@ -15,5 +15,5 @@ Alternatively, using Docker
 ### To Build
 docker build -t localCast:test .
 
-### H3 To Run
+### To Run
 docker run -d -p 8888:8888 -v /local/path:/datadir localcast:test
