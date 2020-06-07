@@ -41,6 +41,7 @@ def processFile(fileName):
                 fileName=fileName,
                 my_host=my_host,
                 my_port=my_port,
+                http_port=http_port,
         )
     elif minus4.lower() in ['.png', '.jpg', '.jpeg', '.gif', '.webp', '.bmp']:
         print("image file is --- {0}".format(fileName))
@@ -49,6 +50,7 @@ def processFile(fileName):
                 fileName=fileName,
                 my_host=my_host,
                 my_port=my_port,
+                http_port=http_port,
         )
     else:
         fileName = fileName.decode()
@@ -59,6 +61,7 @@ def processFile(fileName):
 my_path = u'{0}'.format(sys.argv[1])
 my_host = sys.argv[2]
 my_port = int(sys.argv[3])
+http_port = int(sys.argv[4])
 print("MY PATH IS --- {0}".format(my_path))
 my_key = 'gotunandan'
 app = Flask(__name__)
